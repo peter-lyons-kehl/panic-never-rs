@@ -11,12 +11,12 @@
 
 ## ../.cargo/config.toml
 
-<../.cargo/config.toml> applies to all examples.
+[../.cargo/config.toml](../.cargo/config.toml) applies to all examples.
 
 ## Runnable on Linux only. Buildable possibly on other platforms.
 
 If your platform is other than Linux, then
-- find out what to put in <../.cargo/config.toml>, and
+- find out what to put in [../.cargo/config.toml](../.cargo/config.toml), and
 - share it (by opening a GitHub issue, or even better, by a Pull Request),
   please.
 
@@ -34,21 +34,25 @@ confusing error:
 Each non-panicking (`***_none`) example invokes a syscall to exit gracefully -
 but on Linux only. On other platforms it runs _indefinitely_.
 
-- As per https://github.com/rust-lang/libc/discussions/5683, we don't use
+- As per
+  [rust-lang/libc#5683](https://github.com/rust-lang/libc/discussions/5683), we
+  don't use [`libc` crate](https://crates.io/crates/libc) and its
   `libc::exit(..)`.
-- Neither we use `exit-no-std` (which itself on systems other than DOS/Windows
-  uses `libc::exit(..)`).
-- Neither we use `rustix` (which supposedly does use a syscall rather than
-  `libc` on Linux, but it uses `libc` on FreeBSD/NetBSD, even though those two
-  BSD unixes (unlike OpenBSD) _do_ allow direct invocation of syscalls).
+- Neither we use [`exit-no-std` crate](crates.io/crates/exit-no-std) (which
+  itself on systems other than DOS/Windows uses `libc::exit(..)`).
+- Neither we use [`rustix` crate](https://crates.io/crates/rustix) (which
+  supposedly does use a syscall rather than `libc` on Linux, but it uses `libc`
+  on FreeBSD/NetBSD, even though those two BSD unixes (unlike OpenBSD) _do_
+  allow direct invocation of syscalls).
 - It _should_ be possible to use `libc::exit(..)` (directly, or through
   `exit-no-std` or `rustix`) in `no_std` and `no_main` and with `panic-never`,
   but with much more boiler plate. See
-  https://github.com/rust-lang/libc/discussions/5683.
+  [rust-lang/libc#5683](https://github.com/rust-lang/libc/discussions/5683).
 
 ## async: new_dummy_runtime_and_poll
 
-<async_panic_none/main.rs> and <async_panic_some/main.rs> have function
+[async_panic_none/main.rs](async_panic_none/main.rs) and
+[async_panic_some/main.rs](async_panic_some/main.rs) have function
 `new_dummy_runtime_and_poll` (same in both). That is _never_ run (see `_start`
 function in those examples), but it _is_ built and linked (ensured by
 [core::hint::black_box](https://doc.rust-lang.org/core/hint/fn.black_box.html)
