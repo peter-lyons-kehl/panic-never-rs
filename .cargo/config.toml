@@ -1,0 +1,5 @@
+# This does NOT apply to this crate when it's being build as a dependency
+# library. Instead, it only applies to ../examples/
+
+[target.'cfg(target_os="linux")']
+rustflags = ["-C", "link-arg=-nostartfiles"]

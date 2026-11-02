@@ -2,6 +2,10 @@
 
 > This crate guarantees that your application is free of panicking branches
 
+## Examples
+
+See [examples/](./examples/README.md).
+
 ## License
 
 All source code (including code snippets) is licensed under either of

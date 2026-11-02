@@ -9,3 +9,9 @@ name = "panic-never"
 readme = "README.md"
 repository = "https://github.com/japaric/panic-never"
 version = "0.1.0"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
